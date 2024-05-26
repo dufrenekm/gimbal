@@ -25,7 +25,7 @@ class MotorController(Node):
         
 
         # Create an instance of the Dynamixel class
-        self.dc = Dynamixel(port = '/dev/ttyUSB1')
+        self.dc = Dynamixel(port = '/dev/ttyUSB0')
 
         self.setup_motors()
         self.go_to_start_position()
@@ -33,7 +33,7 @@ class MotorController(Node):
     
         # Create a joint state publisher and transform broadcaster
         qos_profile = QoSProfile(depth=10)
-        self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
+        self.joint_pub = self.create_publisher(JointState, 'joint_states_gimbal', qos_profile)
         
         self.broadcaster = TransformBroadcaster(self, qos=qos_profile)
         timer_period = 0.1  # seconds (10 hz)
@@ -116,7 +116,7 @@ class MotorController(Node):
 
         self.odom_trans.header.stamp = now.to_msg()
         self.joint_pub.publish(joint_state)
-        self.broadcaster.sendTransform(self.odom_trans)
+        # self.broadcaster.sendTransform(self.odom_trans)
 
     def shutdown_motors(self):
         with self.lock.gen_wlock():

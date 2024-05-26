@@ -147,6 +147,7 @@ def generate_launch_description():
     joint_state_publisher_node = Node(
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui",
+        parameters=[{"source_list": ["joint_states_gimbal"]}],
     )
     robot_state_publisher_node = Node(
         package="robot_state_publisher",

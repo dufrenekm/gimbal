@@ -99,8 +99,8 @@
     <limit
       lower="0"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="2"
+      velocity="2" />
   </joint>
   <link
     name="dist_link">

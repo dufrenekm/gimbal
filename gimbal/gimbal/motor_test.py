@@ -14,7 +14,7 @@ class MotorTestClient(Node):
         qos_profile = QoSProfile(depth=10)
         self.targ_pub = self.create_publisher(JointState, 'gimbal_target', qos_profile)
         self.demo_pos1 = 0.0
-        self.demo_pos2 = 0.0
+        self.demo_pos2 = 1.57
 
     def send_target(self):
         js = JointState()
@@ -23,8 +23,8 @@ class MotorTestClient(Node):
         js.name = ['dist', 'prox']
         js.velocity = [2.0, 2.0]
         js.position = [self.demo_pos1, self.demo_pos2]
-        self.demo_pos1 = min(0.8, self.demo_pos1 + .05)
-        self.demo_pos2 = min(0.8, self.demo_pos2 + .05)
+        # self.demo_pos1 = min(0.8, self.demo_pos1 + .05)
+        # self.demo_pos2 = min(0.8, self.demo_pos2 + .05)
 
         self.targ_pub.publish(js)
 

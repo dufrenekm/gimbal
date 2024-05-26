@@ -34,7 +34,7 @@
             rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
         </material>
       </visual>
-      <collision>
+      <!-- <collision>
         <origin
           xyz="0 0 0"
           rpy="0 0 0" />
@@ -42,7 +42,7 @@
           <mesh
             filename="package://gimbal_urdf/meshes/base_link.STL" />
         </geometry>
-      </collision>
+      </collision> -->
     </link>
     <link
       name="mid_link">
@@ -74,7 +74,7 @@
             rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
         </material>
       </visual>
-      <collision>
+      <!-- <collision>
         <origin
           xyz="0 0 0"
           rpy="0 0 0" />
@@ -82,7 +82,7 @@
           <mesh
             filename="package://gimbal_urdf/meshes/mid_link.STL" />
         </geometry>
-      </collision>
+      </collision> -->
     </link>
     <joint
       name="mid_joint"
@@ -132,7 +132,7 @@
             rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
         </material>
       </visual>
-      <collision>
+      <!-- <collision>
         <origin
           xyz="0 0 0"
           rpy="0 0 0" />
@@ -140,7 +140,7 @@
           <mesh
             filename="package://gimbal_urdf/meshes/dist_link.STL" />
         </geometry>
-      </collision>
+      </collision> -->
     </link>
     <joint
       name="dist_joint"
@@ -153,12 +153,25 @@
       <child
         link="dist_link" />
       <axis
-        xyz="0 0 1" />
+        xyz="0 0 -1" />
       <limit
         lower="0"
         upper="0"
         effort="0"
         velocity="0" />
     </joint>
+     <ros2_control name="gimbal_ros2_control" type="system">
+      <hardware>
+      <plugin>mock_components/GenericSystem</plugin>
+      </hardware>
+      <joint name="mid_joint">
+      <state_interface name="position">
+      </state_interface>
+      </joint>
+      <joint name="dist_joint">
+      <state_interface name="position">
+      </state_interface>
+      </joint>
+     </ros2_control>
   </xacro:macro>
 </robot>
